@@ -7,12 +7,12 @@
             @foreach($images as $image)
 
                     <div class="picture animate__animated animate__fadeInLeft">
-                        <a href="">
+                        <a href="{{route('posts.show', $image->id)}}">
                         <img src="{{ asset('images/' . $image->file_name) }}" class="card-img-top"
                              alt="{{$image->description}}">
                         </a>
-                    </div>
 
+                    </div>
 
             @endforeach
 

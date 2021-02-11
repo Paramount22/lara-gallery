@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class ImageController extends Controller
 {
 
@@ -23,6 +24,11 @@ class ImageController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+     return view('images.show', ['image' => Image::findOrFail($id)]);
+    }
+
     public function create()
     {
         return view('images.create');
@@ -30,8 +36,10 @@ class ImageController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'description' => 'required|max:200',
+       // dd($request);
+       $request->validate([
+            'description' => 'required|max:50',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
         $image = Auth::user()->images()->create($request->all());

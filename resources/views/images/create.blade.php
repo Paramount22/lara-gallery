@@ -13,6 +13,7 @@
                         <label for="desc">Description</label>
                         <input type="text" name="description" placeholder="describe your post"
                                class="form-control @error('description') border-red @enderror" id="desc"
+                               value="{{ old('description') }}"
                         >
                         @error('description')
                         <div class="text-red mt-2">
