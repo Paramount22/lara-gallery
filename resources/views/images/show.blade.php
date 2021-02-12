@@ -6,18 +6,29 @@
     <div class="post-single text-center offset-lg-2 mt-3">
         <div class="post-header mb-1">
            <h5>{{$image->description}}</h5>
-            <div class="edit-links">
-                <a href="" class="mr-2"><i class="fas fa-pen"></i></a>
-                <a href=""><i class="fas fa-trash-alt"></i></a>
-            </div>
+
+            @can('update', $image)
+                <div class="edit-links">
+                    <form action="{{route('post.destroy', $image) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                    <a href="{{route('post.edit', $image)}}" class="mr-2"><i class="fas fa-pen"></i></a>
+
+                        <button  type="submit"><i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </div>
+            @endcan
 
         </div>
 
 
-            <img src="{{ asset('images/' . $image->file_name) }}" width="700"  alt="{{$image->description}}">
+            <img src="{{ asset('images/' . $image->file_name) }}"  alt="{{$image->description}}">
 
-        <div class="p-2">
-            likes
+        <div class="p-2 image-footer">
+            <div class="author">
+                <a href=""> @<span>{{$image->user->name}}</span></a>
+            </div>
+            <div class="likes">likes</div>
         </div>
     </div>
 

@@ -12,11 +12,14 @@ class ImageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('create', 'store');
+        $this->middleware('auth')->only('create', 'store', 'update');
     }
 
     private $imageBasePath = 'images';
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('images.index', [
@@ -24,16 +27,27 @@ class ImageController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
      return view('images.show', ['image' => Image::findOrFail($id)]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('images.create');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
        // dd($request);
@@ -49,6 +63,53 @@ class ImageController extends Controller
         $image->save();
 
         return redirect()->route('posts');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $image = Image::findOrFail($id);
+        $this->authorize('update', $image);
+        return view('images.edit')->with( compact('image') );
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'description' => 'required|max:50',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $image = Image::findOrfail($id);
+
+        $this->authorize('update', $image);
+
+        $image->update($request->all());
+
+        $image->file_name = $this->addRemoveImage($request, $image->file_name);
+
+        $image->save();
+
+        return redirect()->route('posts.show', $image->id);
+    }
+
+    public function destroy($id)
+    {
+        $image = Image::findOrFail($id);
+        $this->removeImageFromDisk($image->file_name);
+        $this->authorize('update', $image);
+        $image->delete();
+
+        return redirect('/');
+
     }
 
     /**

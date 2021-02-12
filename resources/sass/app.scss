@@ -48,7 +48,7 @@ body {
     z-index: 1;
 }
 .post-single {
-    max-width: 650px;
+    max-width: 700px;
 
     img {
         width: 100%;
@@ -56,20 +56,45 @@ body {
         border-radius: .4rem;
     }
 
+
+
     .post-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         .edit-links  {
-            margin-left: 1rem;
+
             a {
                 color: lighten(gray, 10%);
                 font-size: 80%;
+                position: relative;
+                left: .5rem;
+                &:hover {
+                    color: #56cc9d;
+                }
             }
-
+            button {
+                background: none;
+                outline: none;
+                border: none;
+                color: gray;
+                font-size: 90%;
+                &:hover {
+                    color: #56cc9d;
+                }
+            }
 
         }
     }
 
+    .image-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}
+.remove {
+    padding-right: 1rem;
 }
