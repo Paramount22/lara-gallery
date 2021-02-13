@@ -11323,9 +11323,12 @@ body {
   align-items: center;
 }
 
+.post-single .post-header .edit-links {
+  font-size: 80%;
+}
+
 .post-single .post-header .edit-links a {
   color: #9a9a9a;
-  font-size: 80%;
   position: relative;
   left: 0.5rem;
 }
@@ -11369,7 +11372,7 @@ body {
 
 .comments-list li {
   margin-bottom: 2rem;
-  border-bottom: 2px dashed gray;
+  border-bottom: 2px dashed silver;
 }
 
 .comments-list .content {
@@ -11382,10 +11385,14 @@ body {
   font-size: 0.9rem;
   display: flex;
   justify-content: space-between;
-  flex: 2 1 250px;
+  align-items: center;
 }
 
 .comments-list .meta time {
   margin-left: 0.5rem;
+}
+
+.comments-list .meta .edit-comment {
+  font-size: 0.8rem;
 }
 

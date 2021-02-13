@@ -26,4 +26,15 @@
             .on( 'focus', function(){ $input.addClass( 'has-focus' ); })
             .on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
     });
+
+    // DELETE comment
+    $('.fa-trash-alt').on('click', function() {
+        return confirm('Are you sure ?');
+    });
+
+    $('.submit').on('click', function() {
+        return confirm('Are you sure ?');
+    });
+
+
 })( jQuery, window, document );

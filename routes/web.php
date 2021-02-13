@@ -20,5 +20,8 @@ Route::delete('posts/{posts}/delete','ImageController@destroy')->name('post.dest
 
 /*Comments*/
 Route::resource('comments', 'CommentController' );
+Route::get('comment/{comment}/delete', 'CommentController@destroy');
+
+
 
 

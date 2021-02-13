@@ -65,7 +65,7 @@ class ImageController extends Controller
 
         $image->save();
 
-        return redirect()->route('posts');
+        return redirect()->route('posts')->with('flash', 'Post added');
     }
 
     /**

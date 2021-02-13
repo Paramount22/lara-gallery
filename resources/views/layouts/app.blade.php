@@ -30,13 +30,15 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body class="animate__animated animate__fadeIn animate__delay-1s animate__faster">
-    <div id="app">
+
         @include('_partials.navigation')
 
-        <main class="container">
+        <main id="app" class="container">
+
             @include('_partials.errors')
             @yield('content')
+            <flash-message text={{ session('flash') }} ></flash-message>
         </main>
-    </div>
+
 </body>
 </html>

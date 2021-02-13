@@ -14,7 +14,7 @@
                         @method('DELETE')
                     <a href="{{route('post.edit', $image)}}" class="mr-2"><i class="fas fa-pen"></i></a>
 
-                        <button  type="submit"><i class="fas fa-trash-alt"></i></button>
+                        <button  type="submit" class="submit"><i class="fas fa-trash-alt"></i></button>
                     </form>
                 </div>
             @endcan
@@ -42,7 +42,7 @@
                           class="form-control" id="comment-area"  rows="2">
                 </textarea>
 
-                <button class="btn btn-secondary mt-3" type="submit">Add comment</button>
+                <button class="btn btn-sm btn-secondary mt-3" type="submit">Add comment</button>
                 <input type="hidden" name="image_id" value="{{ $image->id }}">
             </form>
         @endauth
@@ -64,12 +64,15 @@
                                     </time>
                                 </div>
 
-                                {{--   @can('delete-comment', $comment)  editacne linky iba pre autora prispevku --}}
-                               <div class="edit-comment">
-                                   <a href="{{ url('comment/' . $comment->id . '/delete') }}" class="delete-comment" title="Delete" ><i class="fa fa-times"></i></a>
-                                   <a href="{{ url('comment/' . $comment->id . '/delete') }}" class="delete-comment" title="Delete" ><i class="fa fa-times"></i></a>
-                               </div>
-
+                                @can('update', $comment)
+                                   <div class="edit-comment">
+                                       <a href="" class="edit-comment"
+                                          title="Edit" ><i class="fa fa-pen mr-1"></i></a>
+                                       <a href="{{ url('comment/' . $comment->id . '/delete') }}"
+                                          class="delete-comment"
+                                          title="Delete" ><i class="fas fa-trash-alt"></i></a>
+                                   </div>
+                                @endcan
 
 
                             </footer>

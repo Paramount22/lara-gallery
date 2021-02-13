@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -46,7 +47,8 @@ class CommentController extends Controller
         // priamo do userovych komenarov vytvorime dalsi koment, vdaka vztahom v user modely (hasMany)
         $comment =  auth()->user()->comments()->create( $request->all() );
 
-        return redirect('posts/' . $comment->image->id . '#comments');
+        return redirect('posts/' . $comment->image->id . '#comments')
+            ->with('flash', 'Comment added');
     }
 
     /**
@@ -91,6 +93,12 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrfail($id);
+
+        $this->authorize('update', $comment);
+
+        $comment->delete();
+
+        return redirect()->back();
     }
 }

@@ -64,10 +64,10 @@ body {
         align-items: center;
 
         .edit-links  {
-
+            font-size: 80%;
             a {
                 color: lighten(gray, 10%);
-                font-size: 80%;
+
                 position: relative;
                 left: .5rem;
                 &:hover {
@@ -112,7 +112,7 @@ body {
 
     li {
         margin-bottom: 2rem;
-       border-bottom: 2px dashed gray;
+       border-bottom: 2px dashed lighten(gray, 25%);
     }
     .content {
         padding-bottom: 1rem;
@@ -123,10 +123,15 @@ body {
         font-size: .9rem;
         display: flex;
         justify-content: space-between;
-        flex: 2 1 250px;
+        align-items: center;
+
 
         time {
             margin-left: .5rem;
+        }
+
+        .edit-comment {
+            font-size: .8rem;
         }
 
     }
