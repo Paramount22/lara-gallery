@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="post-single text-center offset-lg-2 mt-3">
+    <section class="post-single text-center offset-lg-2 mt-3">
         <div class="post-header mb-1">
            <h5>{{$image->description}}</h5>
 
@@ -30,6 +30,56 @@
             </div>
             <div class="likes">likes</div>
         </div>
-    </div>
+    </section>
+
+    <section class="comments" id="comments">
+        @auth()
+            <form action="{{route('comments.store')}}" method="POST" class="add-comment-form offset-lg-2">
+                @csrf
+
+                <label for="comment-area"> </label>
+                <textarea name="text" placeholder="insert your comment" required=""
+                          class="form-control" id="comment-area"  rows="2">
+                </textarea>
+
+                <button class="btn btn-secondary mt-3" type="submit">Add comment</button>
+                <input type="hidden" name="image_id" value="{{ $image->id }}">
+            </form>
+        @endauth
+
+            <ol class="comments-list offset-lg-2">
+                @foreach($image->comments as $comment)
+                    <li>
+                        <article class="comment">
+                            <div class="content">
+                                {{ $comment->text }}
+                            </div>
+                            <footer class="meta">
+                                <div class="meta-info">
+                                    <a href="{{ url('user/'. $comment->user->id) }}" class="author">
+                                        @<span>{{ $comment->user->name }}</span>
+                                    </a>
+                                    <time datetime="{{ $comment->created_at->toW3cString() }}" class="text-muted">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </time>
+                                </div>
+
+                                {{--   @can('delete-comment', $comment)  editacne linky iba pre autora prispevku --}}
+                               <div class="edit-comment">
+                                   <a href="{{ url('comment/' . $comment->id . '/delete') }}" class="delete-comment" title="Delete" ><i class="fa fa-times"></i></a>
+                                   <a href="{{ url('comment/' . $comment->id . '/delete') }}" class="delete-comment" title="Delete" ><i class="fa fa-times"></i></a>
+                               </div>
+
+
+
+                            </footer>
+                        </article>
+                    </li>
+                @endforeach
+            </ol>
+
+
+
+    </section>
 
 @endsection

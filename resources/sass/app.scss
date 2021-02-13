@@ -98,3 +98,36 @@ body {
 .remove {
     padding-right: 1rem;
 }
+
+.add-comment-form  {
+    max-width: 700px;
+
+}
+
+.comments-list {
+    max-width: 700px;
+    padding: 0;
+    list-style: none;
+    margin-top: 2rem;
+
+    li {
+        margin-bottom: 2rem;
+       border-bottom: 2px dashed gray;
+    }
+    .content {
+        padding-bottom: 1rem;
+        color: gray;
+    }
+    .meta {
+        padding-bottom: .7rem;
+        font-size: .9rem;
+        display: flex;
+        justify-content: space-between;
+        flex: 2 1 250px;
+
+        time {
+            margin-left: .5rem;
+        }
+
+    }
+}

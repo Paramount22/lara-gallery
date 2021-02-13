@@ -12,7 +12,7 @@ class ImageController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('create', 'store', 'update');
+        $this->middleware('auth')->only('create', 'store', 'update', 'destroy');
     }
 
     private $imageBasePath = 'images';
@@ -25,6 +25,8 @@ class ImageController extends Controller
         return view('images.index', [
             'images' => Image::latest()->with('user')->get() // eager loading
         ]);
+
+
     }
 
     /**
@@ -33,7 +35,8 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-     return view('images.show', ['image' => Image::findOrFail($id)]);
+     return view('images.show', ['image' => Image::findOrFail($id)])->with('comments', 'comments.user');
+
     }
 
     /**

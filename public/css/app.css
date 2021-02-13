@@ -11356,3 +11356,36 @@ body {
   padding-right: 1rem;
 }
 
+.add-comment-form {
+  max-width: 700px;
+}
+
+.comments-list {
+  max-width: 700px;
+  padding: 0;
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.comments-list li {
+  margin-bottom: 2rem;
+  border-bottom: 2px dashed gray;
+}
+
+.comments-list .content {
+  padding-bottom: 1rem;
+  color: gray;
+}
+
+.comments-list .meta {
+  padding-bottom: 0.7rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  flex: 2 1 250px;
+}
+
+.comments-list .meta time {
+  margin-left: 0.5rem;
+}
+

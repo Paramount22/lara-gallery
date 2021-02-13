@@ -16,4 +16,12 @@ class Image extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment')->orderBy('created_at', 'desc');
+    }
 }

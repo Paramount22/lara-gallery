@@ -18,4 +18,7 @@ Route::get('/posts/{post}', 'ImageController@show')->name('posts.show');
 Route::get('/posts/{post}', 'ImageController@show')->name('posts.show');
 Route::delete('posts/{posts}/delete','ImageController@destroy')->name('post.destroy');
 
+/*Comments*/
+Route::resource('comments', 'CommentController' );
+
 
