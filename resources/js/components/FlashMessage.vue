@@ -1,8 +1,8 @@
 <template>
     <transition name="fade">
         <div class="alert alert-success" v-show="visible" role="alert">
-            {{text}}
             <i class="fa fa-times close-message" @click="hide"></i>
+            {{message}}
         </div>
     </transition>
 </template>
@@ -13,14 +13,21 @@
         props: ['text'],
        data() {
            return {
-               visible: false
+               visible: false,
+               message: ''
        }
        },
 
        created() {
             if( this.text ) {
+                this.message = this.text;
                 this.show();
             }
+
+            this.$root.$on('flash', message => {
+                this.message = message;
+                this.show();
+            })
 
        },
 

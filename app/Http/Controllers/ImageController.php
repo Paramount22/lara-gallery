@@ -65,7 +65,7 @@ class ImageController extends Controller
 
         $image->save();
 
-        return redirect()->route('posts')->with('flash', 'PostAdded');
+        return redirect()->route('posts')->with('flash', 'Post added');
     }
 
     /**
@@ -111,7 +111,7 @@ class ImageController extends Controller
         $this->authorize('update', $image);
         $image->delete();
 
-        return redirect('/');
+        return redirect('/')->with('flash', 'Post deleted');
 
     }
 

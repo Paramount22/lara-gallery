@@ -1917,11 +1917,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editing: false,
-      newText: ''
+      newText: '',
+      oldText: ''
     };
   },
   mounted: function mounted() {
-    this.newText = this.commentData.text;
+    this.oldText = this.newText = this.commentData.text;
   },
   methods: {
     textChanged: function textChanged() {
@@ -1932,12 +1933,37 @@ __webpack_require__.r(__webpack_exports__);
       axios.patch('/comments/' + this.commentData.id, {
         text: this.newText
       });
-    }
+      this.$root.$emit('flash', 'Comment updated');
+      this.oldText = this.newText;
+    },
+    startEditing: function startEditing() {
+      this.selectText();
+      this.editing = true;
+    },
+    resetText: function resetText() {
+      this.editing = false;
+      this.$refs.input.innerText = this.oldText;
+    },
+
     /* deleteComment() {
          axios.delete('/comments/' + this.commentData.id);
          this.$el.remove();
      },*/
+    // funkcia na vyznacenie tetu pri editovani
+    selectText: function selectText() {
+      var _this = this;
 
+      setTimeout(function () {
+        var p = _this.$refs.input,
+            s = window.getSelection(),
+            r = document.createRange();
+        r.setStart(p, 0);
+        r.setEnd(p, 1);
+        s.removeAllRanges();
+        s.addRange(r);
+        p.focus();
+      }, 0);
+    }
   }
 });
 
@@ -1966,21 +1992,31 @@ __webpack_require__.r(__webpack_exports__);
   props: ['text'],
   data: function data() {
     return {
-      visible: false
+      visible: false,
+      message: ''
     };
   },
   created: function created() {
+    var _this = this;
+
     if (this.text) {
+      this.message = this.text;
       this.show();
     }
+
+    this.$root.$on('flash', function (message) {
+      _this.message = message;
+
+      _this.show();
+    });
   },
   methods: {
     show: function show() {
-      var _this = this;
+      var _this2 = this;
 
       this.visible = true;
       setTimeout(function () {
-        return _this.hide();
+        return _this2.hide();
       }, 4000);
     },
     hide: function hide() {
@@ -38329,11 +38365,11 @@ var render = function() {
         attrs: { role: "alert" }
       },
       [
-        _vm._v("\n        " + _vm._s(_vm.text) + "\n        "),
         _c("i", {
           staticClass: "fa fa-times close-message",
           on: { click: _vm.hide }
-        })
+        }),
+        _vm._v("\n        " + _vm._s(_vm.message) + "\n    ")
       ]
     )
   ])

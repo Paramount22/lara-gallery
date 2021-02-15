@@ -6,7 +6,9 @@
          ref="input"
          @input="textChanged"
          :contenteditable="editing"
-         @keyup.enter="updateComment"
+         @keydown.enter="updateComment"
+         @keydown.esc="resetText"
+         @blur="resetText"
     >
         {{ $comment->text }}
     </div>
@@ -24,7 +26,7 @@
             <div class="edit-comment">
                 <a href="" class="edit-comment"
                    title="Edit"
-                   @click.prevent="editing = true"
+                   @click.prevent="startEditing"
                 >
                     <i class="fa fa-pen mr-1" ></i>
                 </a>

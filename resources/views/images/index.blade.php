@@ -18,7 +18,8 @@
             @endforeach
 
 
-                {{ $images->links() }}
+
         </div>
+    {{ $images->links() }}
 
 @endsection
