@@ -9,6 +9,7 @@
 
 <script>
     export default {
+        name: "FlashMessage",
         props: ['text'],
        data() {
            return {

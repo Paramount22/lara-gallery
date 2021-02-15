@@ -38,7 +38,9 @@
             @include('_partials.errors')
             @yield('content')
             <flash-message text={{ session('flash') }} ></flash-message>
+
         </main>
+
 
 </body>
 </html>

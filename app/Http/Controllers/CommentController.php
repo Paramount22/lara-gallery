@@ -48,7 +48,7 @@ class CommentController extends Controller
         $comment =  auth()->user()->comments()->create( $request->all() );
 
         return redirect('posts/' . $comment->image->id . '#comments')
-            ->with('flash', 'Comment added');
+            ->with('flash', 'CommentAdded');
     }
 
     /**
@@ -73,32 +73,31 @@ class CommentController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Comment $comment
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy($id)
+    public function update(Request $request, Comment $comment)
     {
-        $comment = Comment::findOrfail($id);
-
         $this->authorize('update', $comment);
 
-        $comment->delete();
+        $comment->text = $request->text;
 
-        return redirect()->back();
+        $comment->save();
+    }
+
+
+    /**
+     * @param Comment $comment
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function destroy(Comment $comment)
+    {
+        $this->authorize('update', $comment);
+        $comment->delete();
+        return back()->with('flash', 'Deleted');
     }
 }

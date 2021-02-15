@@ -23,7 +23,7 @@ class ImageController extends Controller
     public function index()
     {
         return view('images.index', [
-            'images' => Image::latest()->with('user')->get() // eager loading
+            'images' => Image::latest()->with('user')->paginate(9) // eager loading
         ]);
 
 
@@ -65,7 +65,7 @@ class ImageController extends Controller
 
         $image->save();
 
-        return redirect()->route('posts')->with('flash', 'Post added');
+        return redirect()->route('posts')->with('flash', 'PostAdded');
     }
 
     /**

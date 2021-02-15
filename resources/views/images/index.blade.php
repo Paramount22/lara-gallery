@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="posts-images mt-4">
+    <div class="posts-images mt-4 mb-4">
 
 
             @foreach($images as $image)
@@ -18,7 +18,7 @@
             @endforeach
 
 
-
+                {{ $images->links() }}
         </div>
 
 @endsection
