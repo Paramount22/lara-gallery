@@ -11396,3 +11396,17 @@ body {
   font-size: 0.8rem;
 }
 
+.fa-thumbs-up {
+  position: relative;
+  bottom: 2px;
+}
+
+.fa-thumbs-down {
+  position: relative;
+  bottom: -2px;
+}
+
+.likes {
+  display: flex;
+}
+

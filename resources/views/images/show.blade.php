@@ -26,7 +26,44 @@
             <div class="author">
                 <a href=""> @<span>{{$image->user->name}}</span></a>
             </div>
-            <div class="likes">likes</div>
+            <div class="likes">
+                @auth
+                    @if(! $image->likedBy( auth()->user() ))
+                        <form action="{{route('posts.likes', $image->id)}}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-success mr-1">
+                                <i class="fas fa-thumbs-up"></i>
+                            </button>
+                        </form>
+                    @endif
+
+                    @if(! $image->unlikedBy( auth()->user() ))
+                            <form action="{{route('posts.unlikes', $image->id)}}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-thumbs-down"></i>
+                                </button>
+                            </form>
+                    @endif
+
+
+
+                @endauth
+                    @if($image->likes->count() > 0)
+                        <div class="like mr-1">
+                            <strong class="ml-1">{{$image->likes->count()}}
+                                <i class="fas fa-thumbs-up "></i>
+                            </strong>
+                        </div>
+                    @endif
+                    @if($image->unlikes->count() > 0)
+                        <div class="unlike">
+                            <strong>{{$image->unlikes->count()}}
+                                <i class="fas fa-thumbs-down"></i>
+                            </strong>
+                        </div>
+                    @endif
+            </div>
         </div>
     </section>
 

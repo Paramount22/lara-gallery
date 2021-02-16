@@ -22,6 +22,10 @@ Route::delete('posts/{posts}/delete','ImageController@destroy')->name('post.dest
 Route::resource('comments', 'CommentController' );
 Route::get('comment/{comment}/delete', 'CommentController@destroy');
 
+/*Likes*/;
+Route::post('/posts/{image}/likes', 'ImageLikeController@store')->name('posts.likes');
+Route::post('/posts/{image}/unlikes', 'ImageUnlikeController@store')->name('posts.unlikes');
+
 
 
 

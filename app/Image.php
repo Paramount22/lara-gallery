@@ -2,7 +2,6 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
@@ -23,5 +22,39 @@ class Image extends Model
     public function comments()
     {
         return $this->hasMany('App\Comment')->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function unlikes()
+    {
+        return $this->hasMany('App\Unlike');
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function likedBy(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function unLikedBy(User $user)
+    {
+        return $this->unlikes->contains('user_id', $user->id);
     }
 }
