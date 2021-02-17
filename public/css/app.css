@@ -11291,11 +11291,17 @@ body {
      object-fit: cover;
   border-radius: 0.4rem;
   transition: all 0.3s ease;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  /*&:hover {
+      transform:  scale(1.1);
+      transition: all .4s ease-out;
+  }*/
 }
 
-.posts-images .picture img:hover {
-  transform: scale(1.1);
-  transition: all 0.4s ease-out;
+.posts-images .picture img:hover,
+.posts-images .picture img:focus {
+  filter: brightness(0.5);
 }
 
 .input-file {
@@ -11408,5 +11414,32 @@ body {
 
 .likes {
   display: flex;
+}
+
+.middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.picture:hover .middle {
+  opacity: 1;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: white;
+  z-index: -1;
+}
+
+.stats .likes-count {
+  margin-right: 1rem;
 }
 

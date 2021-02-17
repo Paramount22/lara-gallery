@@ -4,12 +4,23 @@
             <a href="{{route('posts.show', $image->id)}}">
                 <img src="{{ asset('images/' . $image->file_name) }}" class="card-img-top"
                      alt="{{$image->description}}">
+                <div class="middle">
+                    <div class="stats">
+                        <div class="likes-count">
+                            <i class="fas fa-heart"></i> {{ $image->likes->count() }}
+                        </div>
+                        <div class="comments-count">
+                            <i class="fas fa-comment"></i> {{ $image->comments->count() }}
+                        </div>
+
+                    </div>
+                </div>
             </a>
         </div>
     @empty
         <div class="alert alert-info" role="alert">
             <div class="alert alert-info" role="alert">
-                A simple info alert—check it out!
+                No posts yet !
             </div>
         </div>
     @endforelse
