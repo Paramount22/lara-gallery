@@ -24,7 +24,7 @@
 
         <div class="p-2 image-footer">
             <div class="author">
-                <a href=""> @<span>{{$image->user->name}}</span></a>
+                <a href="{{route('user.posts', $image->user)}}"> @<span>{{$image->user->name}}</span></a>
             </div>
             <div class="likes">
                 @auth
@@ -45,9 +45,6 @@
                                 </button>
                             </form>
                     @endif
-
-
-
                 @endauth
                     @if($image->likes->count() > 0)
                         <div class="like mr-1">

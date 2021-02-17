@@ -20,7 +20,7 @@ class ImageUnlikeController extends Controller
             'user_id' => $request->user()->id
         ]);
 
-        return back()->with('flash', 'Unliked');
+        return redirect('/posts/' . $image->id . '/#comments')->with('flash', 'Disliked');
 
     }
 

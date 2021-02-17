@@ -32,6 +32,10 @@
                                 New post
                             </a>
 
+                            <a class="dropdown-item" href="{{ route('user.posts', auth()->id()) }}">
+                                My posts
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

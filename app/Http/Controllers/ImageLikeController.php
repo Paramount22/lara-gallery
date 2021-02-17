@@ -20,7 +20,7 @@ class ImageLikeController extends Controller
             'user_id' => $request->user()->id
         ]);
 
-        return back()->with('flash', 'Liked');
+        return redirect('/posts/' . $image->id . '/#comments')->with('flash', 'Liked');
 
     }
 }

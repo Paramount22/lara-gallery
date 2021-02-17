@@ -23,7 +23,8 @@ class ImageController extends Controller
     public function index()
     {
         return view('images.index', [
-            'images' => Image::latest()->with('user', 'likes')->paginate(9) // eager loading
+           // 'images' => Image::latest()->with('user', 'likes', 'unlikes', 'comments')->paginate(9) // eager loading
+            'images' => Image::latest()->paginate(9)
         ]);
 
 

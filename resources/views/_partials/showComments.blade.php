@@ -14,7 +14,7 @@
     </div>
     <footer class="meta">
         <div class="meta-info">
-            <a href="{{ url('user/'. $comment->user->id) }}" class="author">
+            <a href="{{ route('user.posts', $comment->user->id) }}" class="author">
                 @<span>{{ $comment->user->name }}</span>
             </a>
             <time datetime="{{ $comment->created_at->toW3cString() }}" class="text-muted">
