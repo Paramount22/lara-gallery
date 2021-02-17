@@ -11339,7 +11339,8 @@ body {
   left: 0.5rem;
 }
 
-.post-single .post-header .edit-links a:hover {
+.post-single .post-header .edit-links a:hover,
+.post-single .post-header .edit-links a:focus {
   color: #56cc9d;
 }
 
@@ -11351,7 +11352,8 @@ body {
   font-size: 90%;
 }
 
-.post-single .post-header .edit-links button:hover {
+.post-single .post-header .edit-links button:hover,
+.post-single .post-header .edit-links button:focus {
   color: #56cc9d;
 }
 
