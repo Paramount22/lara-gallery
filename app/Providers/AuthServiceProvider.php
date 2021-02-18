@@ -27,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // compare user objects - EDIT USER
+        Gate::define('can-edit-user', function ($logged_in_user, $user)
+        {
+            return $logged_in_user->id == $user->id;
+        });
     }
 }

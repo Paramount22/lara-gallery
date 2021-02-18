@@ -14,6 +14,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('can-edit-user', $user); // gate v subore auth service prvider
+
         return view('users.profile.show', [
            'user' => $user
         ]);
@@ -21,12 +23,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasFile('image')) {
-            $filename = $request->image->getClientOriginalName();
-            $request->image->storeAs('images', $filename, 'public' );
-            auth()->user()->update(['file_name' => $filename]);
-        }
-        return back();
+            if($request->hasFile('image')) {
+                $filename = $request->image->getClientOriginalName();
+                $request->image->storeAs('images', $filename, 'public' );
+                auth()->user()->update(['file_name' => $filename]);
+            }
+
+        return back()->with('flash', 'Uploded');
 
     }
 

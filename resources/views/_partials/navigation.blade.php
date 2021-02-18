@@ -38,7 +38,7 @@
                             </a>
 
                             <a class="dropdown-item" href="{{ route('user.profile', auth()->id()) }}">
-                                Upload user image
+                                Upload avatar
                             </a>
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
