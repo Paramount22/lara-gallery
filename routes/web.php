@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
 
 
 Auth::routes();
@@ -27,6 +27,9 @@ Route::post('/posts/{image}/unlikes', 'ImageUnlikeController@store')->name('post
 
 /*Users*/
 Route::get('/user/{user}/posts', 'UserPostController@index')->name('user.posts');
+Route::get('/user/{user}/profile', 'UserController@show')->name('user.profile');
+
+Route::post('/upload', 'UserController@store');
 
 
 
