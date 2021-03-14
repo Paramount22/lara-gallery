@@ -1949,7 +1949,7 @@ __webpack_require__.r(__webpack_exports__);
          axios.delete('/comments/' + this.commentData.id);
          this.$el.remove();
      },*/
-    // funkcia na vyznacenie tetu pri editovani
+    // funkcia na vyznacenie textu pri editovani
     selectText: function selectText() {
       var _this = this;
 

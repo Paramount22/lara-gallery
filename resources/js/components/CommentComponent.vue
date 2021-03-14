@@ -47,7 +47,7 @@
                 this.$el.remove();
             },*/
 
-            // funkcia na vyznacenie tetu pri editovani
+            // funkcia na vyznacenie textu pri editovani
             selectText() {
                 setTimeout(() => {
                     let p = this.$refs.input,

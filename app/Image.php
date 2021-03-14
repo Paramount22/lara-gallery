@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
@@ -23,6 +24,7 @@ class Image extends Model
     {
         return $this->hasMany('App\Comment')->orderBy('created_at', 'desc');
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

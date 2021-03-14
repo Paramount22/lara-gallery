@@ -24,7 +24,11 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             @<span>{{ Auth::user()->name }}</span>
-                            <img src="{{asset('storage/images/' . Auth::user()->file_name)}}" width="30" alt="{{Auth::user()->name}}">
+                            @if(Auth::user()->file_name)
+                            <img src="{{asset('storage/images/' . Auth::user()->file_name)}}"
+                                 width="30" alt="{{Auth::user()->name}}"
+                            >
+                            @endif
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -38,7 +42,7 @@
                             </a>
 
                             <a class="dropdown-item" href="{{ route('user.profile', auth()->id()) }}">
-                                Upload avatar
+                                My avatar
                             </a>
 
                             <a class="dropdown-item" href="{{ route('logout') }}"

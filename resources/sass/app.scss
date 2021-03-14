@@ -187,6 +187,22 @@ body {
 .user {
     display: flex;
     justify-content: flex-start;
-
     align-items: center;
-}
+    padding-bottom: 1rem;
+    border-bottom: 1px solid lightgray;
+
+    .user-avatar {
+        margin-right: 1rem;
+
+    }
+
+    .user-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    }
+
+
+

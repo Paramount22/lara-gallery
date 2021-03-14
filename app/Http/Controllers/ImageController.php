@@ -24,7 +24,7 @@ class ImageController extends Controller
     {
         return view('images.index', [
            // 'images' => Image::latest()->with('user', 'likes', 'unlikes', 'comments')->paginate(9) // eager loading
-            'images' => Image::latest()->paginate(9)
+            'images' => Image::latest()->simplePaginate(9)
         ]);
 
 
@@ -36,7 +36,9 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-     return view('images.show', ['image' => Image::findOrFail($id)])->with('comments', 'comments.user');
+        //dd($image = Image::findOrFail($id)->comments()->paginate(10));
+      return view('images.show',
+         ['image' => Image::findOrFail($id)])->with('comments', 'comments.user');
 
     }
 

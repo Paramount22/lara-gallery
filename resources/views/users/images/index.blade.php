@@ -3,7 +3,9 @@
 @section('content')
     <section class="user mt-4">
         <div class="user-avatar">
-            <img src="{{asset('storage/images/' . $user->file_name)}}" width="100" alt="">
+            @if($user->file_name )
+                <img src="{{asset('storage/images/' . $user->file_name)}}" width="100" alt="">
+            @endif
         </div>
 
         <div class="user-data">

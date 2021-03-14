@@ -6,7 +6,11 @@
 
 <div class="card offset-lg-4 mt-4" style="width: 24rem">
     <div class="card-header">
+        @if( isset($user->file_name) )
+            <img width="35" src="{{asset('storage/images/' . $user->file_name)}}" alt="{{$user->name}}">
+        @endif
         My profile
+
     </div>
     <div class="card-body">
         <ul class="list-group">
@@ -14,7 +18,7 @@
             <li class="list-group-item">{{$user->email}}</li>
 
         </ul>
-        <form action="/upload" class="mt-4" method="post" enctype="multipart/form-data">
+        <form action="{{route('user.upload', $user)}}" class="mt-4" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <input type="file" name="image" id="image"

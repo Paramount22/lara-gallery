@@ -28,8 +28,7 @@ Route::post('/posts/{image}/unlikes', 'ImageUnlikeController@store')->name('post
 /*Users*/
 Route::get('/user/{user}/posts', 'UserPostController@index')->name('user.posts');
 Route::get('/user/{user}/profile', 'UserController@show')->name('user.profile');
-
-Route::post('/upload', 'UserController@store');
+Route::post('/user/{user}/upload', 'UserController@store')->name('user.upload');
 
 
 
